@@ -43,6 +43,65 @@ def login_required(f):
     return decorated_function
 def emptycart():
     execute_db("delete from cart")
+
+
+
+@app.route('/admin', methods=['POST','GET'])
+def admin():
+    now = datetime.now().strftime("%H")
+    if now=="17":
+        emptycart()
+    session.clear()
+    if request.method== 'GET':
+        return render_template('adminlogin.html')
+    else:
+        id=request.form['id']
+        password=request.form['password']
+        phash = query_db("select password from admin where id = %s", (id, ))
+        if phash is None:
+            flash("User does not exist","danger")
+            return render_template("adminlogin.html")
+
+        if sha.verify(password, phash[0][0]):
+            session["user_id"] = id
+            flash("Login Successful", "success")
+            return redirect(url_for("adminmycart"))
+        else:
+            flash("Incorrect Password","danger")
+            return render_template("adminlogin.html")
+
+@app.route('/adminmycart', methods=["GET"])
+@login_required
+def adminmycart():
+    now = datetime.now().strftime("%H")
+    if now=="17":
+        emptycart()
+    items = query_db("select * from warehouse where stock = %s",(0,))
+    
+    print(items)
+    return render_template("adminmycart.html", user=session["user_id"], cart=items)
+
+@app.route('/additem',methods=["GET","POST"])
+@login_required
+def additem():
+    now = datetime.now().strftime("%H")
+    if now=="17":
+        emptycart()
+    if request.method=='GET':
+        return render_template('additem.html')
+    else:
+        index=request.form['index']
+        description=request.form['description']
+        stock=request.form['stock']
+        rate=request.form['rate']
+        item =query_db("select stock, rate from warehouse where no = %s",(index,))
+        print(item)
+        if item is None:
+            execute_db('insert into warehouse values(%s,%s,%s,%s)',(index,description,stock,rate,))
+        else:
+            execute_db('update warehouse set stock=%s,rate=%s where no=%s',(int(stock)+int(item[0][0]),item[0][1],index))
+        return render_template('additem.html')
+
 @app.route('/login', methods=['POST','GET'])
 def login():
     now = datetime.now().strftime("%H")

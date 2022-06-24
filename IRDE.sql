@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (11234,'$5$rounds=535000$AnFheZG2iI7nGJ7b$dn/IV5NyUH1RFeIsFgConKMK2ocYlbuXKiGMBwNdiP8');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `cart`
 --
 
@@ -36,6 +60,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (11234,2,5),(11234,4,20);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +109,7 @@ CREATE TABLE `sold` (
 
 LOCK TABLES `sold` WRITE;
 /*!40000 ALTER TABLE `sold` DISABLE KEYS */;
-INSERT INTO `sold` VALUES (11234,1,12),(11234,3,7),(19198,2,61);
+INSERT INTO `sold` VALUES (11234,1,12),(11234,3,7),(19198,2,61),(11234,1,5),(11234,4,30),(11234,146,3);
 /*!40000 ALTER TABLE `sold` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +135,7 @@ CREATE TABLE `warehouse` (
 
 LOCK TABLES `warehouse` WRITE;
 /*!40000 ALTER TABLE `warehouse` DISABLE KEYS */;
-INSERT INTO `warehouse` VALUES (1,'hand towel',78,30),(2,'soaps',207,10),(3,'handwash',46,100);
+INSERT INTO `warehouse` VALUES (1,'hand towel',95,30),(2,'soaps',190,10),(3,'handwash',46,100),(4,'lux soap',250,40),(5,'ponds soap',300,70),(6,'himalaya soap',20,70),(134,'Colgate toothpaste',100,45),(146,'Dettol Handwash',0,15);
 /*!40000 ALTER TABLE `warehouse` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -123,4 +148,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-13  3:00:31
+-- Dump completed on 2018-06-27 10:01:20

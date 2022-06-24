@@ -46,15 +46,15 @@
 
         		<ul class="nav">
                 <li {% if request.path == url_for('mycart') %}class="active"{% endif %}>
-                    <a href="{{ url_for('mycart')}}">
+                    <a href="{{ url_for('adminmycart')}}">
 						<i class="ti-bag"></i>
-                        <p> My Cart</p>
+                        <p>Out of Stock</p>
                     </a>
                 </li>
                 <li {% if request.path == url_for('searchitem') %}class="active"{% endif %}>
-                    <a href="{{ url_for('searchitem') }}">
+                    <a href="{{ url_for('additem') }}">
                         <i class="ti-search"></i>
-                        <p>Search Items</p>
+                        <p>Add Item</p>
                     </a>
                 </li>
                 <li {% if request.path == url_for('download') %}class="active"{% endif %}>
@@ -79,10 +79,10 @@
                         <span class="icon-bar bar3"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-											{% if request.path == url_for('mycart') %}
-												My Cart
-											{% elif request.path == url_for('searchitem') %}
-												Search Item
+											{% if request.path == url_for('adminmycart') %}
+												Out Of Stock
+											{% elif request.path == url_for('additem') %}
+												Add Item
                                                 {% elif request.path == url_for('download') %}
                                                 All Items.
                                                 
@@ -99,7 +99,6 @@
 								<p>{{ user }}</p>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url_for('change')}}">Change Password</a></li>
                                 <li><a href="{{ url_for('logout')}}">Sign Out</a></li>
                               </ul>
                         </li>

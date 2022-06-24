@@ -1,0 +1,13 @@
+{% extends 'admindashboard.html' %}
+
+{% block main %}
+<form method="post" accept-charset="utf-8">
+	
+	Index Number: <input type="text" name="index"><br><br>
+	Description: <input type="text" name="description" placeholder="eg. Lux Soap"><br><br>
+	Stock: <input type="number" name="stock" value="Stock" placeholder=""><br><br>
+	Rate: 
+	<input type="number" name="rate" value="Rate" placeholder=""><br><br>
+	<input type="submit" name="" value="Submit">
+</form>
+{% endblock %}

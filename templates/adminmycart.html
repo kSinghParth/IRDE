@@ -1,10 +1,10 @@
-{% extends "dashboard.html" %}
+{% extends "admindashboard.html" %}
 
 {% block main %}
 
 <div align="center">
-<h1>My Cart</h1>
-  {% if items %}
+<h1>Out of Stock Items</h1>
+  {% if cart %}
     
   <form action="" method="post" accept-charset="utf-8">  
     <table class="table table-hover" align="center">
@@ -13,27 +13,23 @@
             <th style="text-align:center">Desciption</th>
             <th style="text-align:center">Quantity</th>
             <th style="text-align:center">Rate</th>
-            <th style="text-align:center">Amount</th>
         </tr>
         {% for i in range(cart|length) %}
             <tr>
                 <td align="center">{{cart[i][0]}}</td>
                 <td align="center">{{cart[i][1]}}</td>
-                <td align="center">{{items[i][1]}}</td>
+                <td align="center">{{cart[i][2]}}</td>
                 <td align="center">{{cart[i][3]}}</td>
-                <td align="center">{{cart[i][3]*items[i][1]}}</td>
                 
             </tr>
         {% endfor %}
     </table>
     <div class="text-center">
        <!--  <button type="submit" class="btn btn-info btn-fill btn-wd">Submit</button> -->
-        <form  method="post" >      <input type="submit" name="" value="Buy">
-    </form>
     </div>
   </form>
     {% else %}
-     Cart is empty
+     Everything is in Stock
 {% endif %}
 </div>
 
